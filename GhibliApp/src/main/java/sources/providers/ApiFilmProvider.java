@@ -1,6 +1,6 @@
 package sources.providers;
 
-import sources.Api;
+import sources.Api.ApiFilm;
 import sources.mapper.FilmMapper;
 import sources.data.FilmResponse;
 import sources.util.ForNetwork;
@@ -10,10 +10,9 @@ import forserver.md.Films;
 import java.io.IOException;
 
 public class ApiFilmProvider implements FilmProvider {
+    private ApiFilm api;
 
-    private Api api;
-
-    public ApiFilmProvider() { api = ForNetwork.buildApi(Api.class, Api.URL); }
+    public ApiFilmProvider() { api = ForNetwork.buildApi(ApiFilm.class, ApiFilm.URL); }
 
     @Override
     public Films getFilmById(String id) {

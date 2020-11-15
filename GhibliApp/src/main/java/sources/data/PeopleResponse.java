@@ -27,7 +27,7 @@ public class PeopleResponse {
 	private String id;
 
 	@SerializedName("age")
-	private String age;
+	private int age;
 
 	@SerializedName("url")
 	private String url;
@@ -91,11 +91,11 @@ public class PeopleResponse {
 		return id;
 	}
 
-	public void setAge(String age){
+	public void setAge(int age){
 		this.age = age;
 	}
 
-	public String getAge(){
+	public int getAge(){
 		return age;
 	}
 

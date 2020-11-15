@@ -1,4 +1,4 @@
-package sources;
+package sources.Api;
 
 import sources.data.FilmResponse;
 import retrofit2.Call;
@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface Api {
+public interface ApiFilm {
 
     String URL = "https://ghibliapi.herokuapp.com/";
 
