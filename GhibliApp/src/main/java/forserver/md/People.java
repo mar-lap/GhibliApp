@@ -28,4 +28,13 @@ public class People {
     public String getEye_color() { return eye_color; }
 
     public String getHair_color() { return hair_color; }
+
+    @Override
+    public String toString() {
+        return "name: " + name +
+                "\ngender: " +
+                "\nage: " + age +
+                "\neye color: " + eye_color +
+                "\nhair color: " + hair_color + '\n';
+    }
 }

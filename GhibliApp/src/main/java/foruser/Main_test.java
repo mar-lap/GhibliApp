@@ -31,7 +31,7 @@ public class Main_test {
             else q = 2;
             case 2: if (type == 3) {
                 System.out.println("Enter location id: ");
-                new Main_test().testPeopleProvider();
+                new Main_test().testLocationProvider();
             }
             else q = 3;
             case 3: if (type == 4) {

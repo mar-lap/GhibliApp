@@ -24,4 +24,12 @@ public class Vehicles {
     public String getVehicle_class() { return vehicle_class; }
 
     public int getLength() { return length; }
+
+    @Override
+    public String toString() {
+        return "name: " + name +
+                "\ndescription: " + description +
+                "\nvehicle_class: " + vehicle_class +
+                "\nlength: " + length + '\n';
+    }
 }

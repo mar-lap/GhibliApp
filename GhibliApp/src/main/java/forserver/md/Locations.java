@@ -25,10 +25,11 @@ public class Locations {
 
     public String getSurface_water() { return surface_water; }
 
+    @Override
     public String toString(){
         return "name: " + name +
                 "\nclimate: " + climate +
                 "\nterrain: " + terrain +
-                "\nsurface_water " + surface_water + '\n';
+                "\nsurface_water: " + surface_water + '\n';
     }
 }

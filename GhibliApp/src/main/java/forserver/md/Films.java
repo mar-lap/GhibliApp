@@ -39,7 +39,7 @@ public class Films {
         return "film: " + title +
                 "\ndescription: " + description +
                 "\ndirector: " + director +
-                "\nproducer : " + producer +
+                "\nproducer: " + producer +
                 "\nrelease date: " + release_date +
                 "\nrt score: " + rt_score + '\n';
     }

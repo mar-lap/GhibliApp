@@ -24,4 +24,12 @@ public class Species {
     public String getName() { return name; }
 
     public String getHair_colors() { return hair_colors; }
+
+    @Override
+    public String toString() {
+        return "name: " + name +
+                "\nclassification: " + classification +
+                "\neye colors: " + eye_colors +
+                "\nhair colors: " + hair_colors + '\n';
+    }
 }
