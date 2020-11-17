@@ -21,7 +21,7 @@ public class FilmResponse {
 	private String title;
 
 	@SerializedName("rt_score")
-	private int rtScore;
+	private String rtScore;
 
 	@SerializedName("people")
 	private List<String> people;
@@ -30,7 +30,7 @@ public class FilmResponse {
 	private String url;
 
 	@SerializedName("release_date")
-	private int releaseDate;
+	private String releaseDate;
 
 	@SerializedName("species")
 	private List<String> species;
@@ -84,11 +84,11 @@ public class FilmResponse {
 		return title;
 	}
 
-	public void setRtScore(int rtScore){
+	public void setRtScore(String rtScore){
 		this.rtScore = rtScore;
 	}
 
-	public int getRtScore(){
+	public String getRtScore(){
 		return rtScore;
 	}
 
@@ -108,11 +108,11 @@ public class FilmResponse {
 		return url;
 	}
 
-	public void setReleaseDate(int releaseDate){
+	public void setReleaseDate(String releaseDate){
 		this.releaseDate = releaseDate;
 	}
 
-	public int getReleaseDate(){
+	public String getReleaseDate(){
 		return releaseDate;
 	}
 

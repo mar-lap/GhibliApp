@@ -17,7 +17,7 @@ public class VehiclesResponse{
 	private String name;
 
 	@SerializedName("length")
-	private int length;
+	private String length;
 
 	@SerializedName("description")
 	private String description;
@@ -36,13 +36,9 @@ public class VehiclesResponse{
 		return films;
 	}
 
-	public void setPilot(String pilot){
-		this.pilot = pilot;
-	}
+	public void setPilot(String pilot){ this.pilot = pilot; }
 
-	public String getPilot(){
-		return pilot;
-	}
+	public String getPilot(){ return pilot; }
 
 	public void setVehicleClass(String vehicleClass){
 		this.vehicleClass = vehicleClass;
@@ -60,11 +56,11 @@ public class VehiclesResponse{
 		return name;
 	}
 
-	public void setLength(int length){
+	public void setLength(String length){
 		this.length = length;
 	}
 
-	public int getLength(){
+	public String getLength(){
 		return length;
 	}
 

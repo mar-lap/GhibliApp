@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 group 'org.example'
@@ -15,3 +17,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 }
+
+javafx {
+    version = "11.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+mainClassName = 'foruser.UI'
+

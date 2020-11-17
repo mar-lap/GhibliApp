@@ -5,9 +5,9 @@ public class Vehicles {
     private String name;
     private String description;
     private String vehicle_class;
-    private int length;
+    private String length;
 
-    public Vehicles(String id, String name, String description, String vehicle_class, int length) {
+    public Vehicles(String id, String name, String description, String vehicle_class, String length) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -23,7 +23,7 @@ public class Vehicles {
 
     public String getVehicle_class() { return vehicle_class; }
 
-    public int getLength() { return length; }
+    public String getLength() { return length; }
 
     @Override
     public String toString() {

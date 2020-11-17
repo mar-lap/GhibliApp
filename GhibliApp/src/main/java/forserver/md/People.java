@@ -4,11 +4,11 @@ public class People {
     private String id;
     private String name;
     private String gender;
-    private int age;
+    private String age;
     private String eye_color;
     private String hair_color;
 
-    public People(String id, String name, String gender, int age, String eye_color, String hair_color) {
+    public People(String id, String name, String gender, String age, String eye_color, String hair_color) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -23,7 +23,7 @@ public class People {
 
     public String getGender() { return gender; }
 
-    public int getAge() { return age; }
+    public String getAge() { return age; }
 
     public String getEye_color() { return eye_color; }
 
@@ -32,7 +32,7 @@ public class People {
     @Override
     public String toString() {
         return "name: " + name +
-                "\ngender: " +
+                "\ngender: " + gender +
                 "\nage: " + age +
                 "\neye color: " + eye_color +
                 "\nhair color: " + hair_color + '\n';
