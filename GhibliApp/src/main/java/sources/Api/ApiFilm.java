@@ -10,6 +10,6 @@ public interface ApiFilm {
 
     String URL = "https://ghibliapi.herokuapp.com/";
 
-    @GET("films/{id}/")
+    @GET("/films/{id}/")
     Call<FilmResponse> getFilmById(@Path("id") String id);
 }

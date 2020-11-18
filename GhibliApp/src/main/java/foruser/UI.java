@@ -8,7 +8,6 @@ import forserver.usecases.*;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.application.Application;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -103,6 +102,7 @@ public class UI extends Application {
                     score.setTextFill(Color.WHITE);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, title, desc, dir, prod, rel, score);
+                    column.setAlignment(Pos.CENTER);
                 }
                 else {
                     column = BadAnswer(column, type);
@@ -134,6 +134,7 @@ public class UI extends Application {
                     hair_color.setTextFill(Color.WHITE);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, gender, age, eye_color, hair_color);
+                    column.setAlignment(Pos.CENTER);
                 }
                 else {
                     column = BadAnswer(column, type);
@@ -161,6 +162,7 @@ public class UI extends Application {
                     surf_water.setTextFill(Color.WHITE);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, climate, terrain, surf_water);
+                    column.setAlignment(Pos.CENTER);
                 }
                 else {
                     column = BadAnswer(column, type);
@@ -218,6 +220,7 @@ public class UI extends Application {
                     length.setTextFill(Color.WHITE);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, desc, veh_class, length);
+                    column.setAlignment(Pos.CENTER);
                 }
                 else {
                     column = BadAnswer(column, type);
@@ -228,7 +231,7 @@ public class UI extends Application {
         }
 
         Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/ghibliImage.jpeg", 400, 280, false, true);
-        BackgroundImage image = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage image = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false,true, true));
         column.setBackground(new Background(image));
 
         Scene scene = new Scene(column, 400, 280);
@@ -245,21 +248,14 @@ public class UI extends Application {
     public Stage EnterId(Stage stage, String type) {
         Label title = new Label("Enter id:");
         title.setFont(Font.font("Arial", FontWeight.LIGHT, 15));
-        AnchorPane.setTopAnchor(title, 80.0);
-        AnchorPane.setLeftAnchor(title, 110.0);
-        AnchorPane.setRightAnchor(title, 20.0);
         title.setTextFill(Color.WHITE);
 
-        TextField id = new TextField();
-        AnchorPane.setTopAnchor(id, 110.0);
-        AnchorPane.setLeftAnchor(id, 50.0);
+        FlowPane enter = new FlowPane(title);
+        enter.setAlignment(Pos.TOP_CENTER);
 
-        Label text = new Label("...");
-        text.setTextFill(Color.BLUEVIOLET);
+        TextField id = new TextField();
 
         Hyperlink find = new Hyperlink("Find");
-        AnchorPane.setTopAnchor(find, 110.0);
-        AnchorPane.setLeftAnchor(find, 210.0);
         find.setTextFill(Color.WHITE);
         find.setOnAction(e -> {
             Stage stage_answer = new Stage();
@@ -267,10 +263,16 @@ public class UI extends Application {
 
         });
 
-        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/wind.jpg",300, 200, false, true, true);
-        ImageView back = new ImageView(img);
+        FlowPane find_id = new FlowPane(Orientation.HORIZONTAL, 10, 10, id, find);
+        find_id.setAlignment(Pos.CENTER);
 
-        AnchorPane root = new AnchorPane(back, title, id, find, text);
+        FlowPane root = new FlowPane(Orientation.VERTICAL, 10, 10, enter, find_id);
+        root.setAlignment(Pos.CENTER);
+
+        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/wind.jpg",300, 200, false, true, true);
+        BackgroundImage image = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(300, 200, false, false, true, true));
+        root.setBackground(new Background(image));
+
         Scene scene = new Scene(root, 300,  200);
 
         stage.setScene(scene);
@@ -284,20 +286,16 @@ public class UI extends Application {
         return stage;
     }
 
-    public Stage window(Stage stage) {
+    public Stage Greeting(Stage stage) {
         Label title = new Label("What information from Ghibli Studio do you prefer to know?");
         title.setTextFill(Color.WHITE);
         title.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-        AnchorPane.setTopAnchor(title, 20.0);
-        AnchorPane.setLeftAnchor(title, 12.0);
-        AnchorPane.setRightAnchor(title, 20.0);
+
+        FlowPane top = new FlowPane(title);
+        top.setAlignment(Pos.TOP_CENTER);
 
         Hyperlink type1_btn = new Hyperlink("1");
-        AnchorPane.setTopAnchor(type1_btn, 50.0);
-        AnchorPane.setLeftAnchor(type1_btn, 15.0);
-        AnchorPane.setBottomAnchor(type1_btn, 220.0);
         type1_btn.setTextFill(Color.BLACK);
-
         type1_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
             stage_id = EnterId(stage_id, "films");
@@ -305,91 +303,70 @@ public class UI extends Application {
 
         Label films = new Label("Films");
         films.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-        AnchorPane.setBottomAnchor(films, 45.0);
-        AnchorPane.setLeftAnchor(films, 45.0);
-        AnchorPane.setBottomAnchor(films, 225.0);
         films.setTextFill(Color.WHITE);
 
-        Hyperlink type2_btn = new Hyperlink("2");
-        AnchorPane.setTopAnchor(type2_btn, 90.0);
-        AnchorPane.setLeftAnchor(type2_btn, 15.0);
-        AnchorPane.setBottomAnchor(type2_btn, 180.0);
-        type2_btn.setTextFill(Color.BLACK);
+        FlowPane first_row = new FlowPane(Orientation.HORIZONTAL, 10, 10, type1_btn, films);
 
+        Hyperlink type2_btn = new Hyperlink("2");
+        type2_btn.setTextFill(Color.BLACK);
         type2_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
             stage_id = EnterId(stage_id, "people");
         });
 
-
         Label people = new Label("People");
-        people.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-        AnchorPane.setBottomAnchor(people, 85.0);
-        AnchorPane.setLeftAnchor(people, 45.0);
-        AnchorPane.setBottomAnchor(people, 185.0);
+        people.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
         people.setTextFill(Color.WHITE);
 
-        Hyperlink type3_btn = new Hyperlink("3");
-        AnchorPane.setTopAnchor(type3_btn, 130.0);
-        AnchorPane.setLeftAnchor(type3_btn, 15.0);
-        AnchorPane.setBottomAnchor(type3_btn, 140.0);
-        type3_btn.setTextFill(Color.BLACK);
+        FlowPane second_row = new FlowPane(Orientation.HORIZONTAL, 10, 10, type2_btn, people);
 
+        Hyperlink type3_btn = new Hyperlink("3");
+        type3_btn.setTextFill(Color.BLACK);
         type3_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
             stage_id = EnterId(stage_id, "locations");
         });
 
         Label locations = new Label("Locations");
-        locations.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-        AnchorPane.setBottomAnchor(locations, 135.0);
-        AnchorPane.setLeftAnchor(locations, 45.0);
-        AnchorPane.setBottomAnchor(locations, 145.0);
+        locations.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
         locations.setTextFill(Color.WHITE);
 
-        Hyperlink type4_btn = new Hyperlink("4");
-        AnchorPane.setTopAnchor(type4_btn, 170.0);
-        AnchorPane.setLeftAnchor(type4_btn, 15.0);
-        AnchorPane.setBottomAnchor(type4_btn, 100.0);
-        type4_btn.setTextFill(Color.BLACK);
+        FlowPane third_row = new FlowPane(Orientation.HORIZONTAL, 10, 10, type3_btn, locations);
 
+        Hyperlink type4_btn = new Hyperlink("4");
+        type4_btn.setTextFill(Color.BLACK);
         type4_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
             stage_id = EnterId(stage_id, "species");
         });
 
         Label species = new Label("Species");
-        species.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-        AnchorPane.setBottomAnchor(species, 175.0);
-        AnchorPane.setLeftAnchor(species, 45.0);
-        AnchorPane.setBottomAnchor(species, 105.0);
+        species.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
         species.setTextFill(Color.WHITE);
 
-        Hyperlink type5_btn = new Hyperlink("5");
-        AnchorPane.setTopAnchor(type5_btn, 210.0);
-        AnchorPane.setLeftAnchor(type5_btn, 15.0);
-        AnchorPane.setBottomAnchor(type5_btn, 60.0);
-        type5_btn.setTextFill(Color.BLACK);
+        FlowPane forth_row = new FlowPane(Orientation.HORIZONTAL, 10, 10, type4_btn, species);
 
+        Hyperlink type5_btn = new Hyperlink("5");
+        type5_btn.setTextFill(Color.BLACK);
         type5_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
             stage_id = EnterId(stage_id, "vehicles");
         });
 
         Label vehicles = new Label("Vehicles");
-        vehicles.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-        AnchorPane.setBottomAnchor(vehicles, 215.0);
-        AnchorPane.setLeftAnchor(vehicles, 45.0);
-        AnchorPane.setBottomAnchor(vehicles, 65.0);
+        vehicles.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
         vehicles.setTextFill(Color.WHITE);
 
-        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/spirit.jpg", 400, 300, false, true,true);
-        ImageView back_img = new ImageView();
-        back_img.setImage(img);
+        FlowPane fifth_row = new FlowPane(Orientation.HORIZONTAL, 10, 10, type5_btn, vehicles);
 
-        AnchorPane root = new AnchorPane(back_img, title, films, people, locations, species, vehicles, type1_btn, type2_btn, type3_btn, type4_btn, type5_btn);
+        FlowPane result = new FlowPane(Orientation.VERTICAL, 10, 10, top, first_row, second_row, third_row, forth_row, fifth_row);
+        result.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(root, 400, 300);
+        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/spirit.jpg", 400, 300, false, true);
+        BackgroundImage image = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false,true, true));
+        result.setBackground(new Background(image));
+
+        Scene scene = new Scene(result, 400, 300);
         stage.setScene(scene);
 
         stage.setTitle("Ghibli App");
@@ -399,8 +376,9 @@ public class UI extends Application {
         stage.show();
         return stage;
     }
+
     @Override
     public void start(Stage primaryStage) {
-        primaryStage = window(primaryStage);
+        primaryStage = Greeting(primaryStage);
     }
 }
