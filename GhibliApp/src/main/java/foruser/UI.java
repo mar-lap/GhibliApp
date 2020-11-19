@@ -1,6 +1,5 @@
 package foruser;
 
-
 import sources.providers.*;
 import forserver.md.*;
 import forserver.usecases.*;
@@ -56,10 +55,8 @@ public class UI extends Application {
     }
 
     public FlowPane BadAnswer(FlowPane column, String type) {
-        if (type == "people") type = "person";
-
         Label answer = new Label("Sorry, didn't find that " + type);
-        answer.setTextFill(Color.WHITE);
+        answer.setTextFill(Color.BLACK);
         answer.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 
         column = new FlowPane(Orientation.HORIZONTAL, answer);
@@ -68,38 +65,55 @@ public class UI extends Application {
         return column;
     }
 
+    public FlowPane NullAnswer(FlowPane column) {
+        Label answer = new Label("There's nothing. Are you sure, that you entered the id?");
+        answer.setTextFill(Color.BLACK);
+        answer.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+
+        column = new FlowPane(answer);
+        column.setAlignment(Pos.CENTER);
+
+        return column;
+    }
+
     public Stage Answer(Stage primaryStage, String type, String id) {
         FlowPane column = new FlowPane();
         int q = 1;
+
+        if (id.length() == 0) {
+            q = 6;
+            column = NullAnswer(column);
+        }
+
         switch(q) {
-            case 1: if (type == "films") {
+            case 1: if (type == "film") {
                 Films film_answer = testFilmApiProvider(id);
                 if (film_answer != null) {
                     Label title = new Label("title:" + film_answer.getTitle());
-                    title.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    title.setTextFill(Color.WHITE);
+                    title.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    title.setTextFill(Color.BLACK);
 
                     Label desc = new Label("description: " + film_answer.getDescription());
-                    desc.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    desc.setTextFill(Color.WHITE);
+                    desc.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    desc.setTextFill(Color.BLACK);
                     desc.setWrapText(true);
                     desc.setMaxWidth(300);
 
                     Label dir = new Label("director: " + film_answer.getDirector());
-                    dir.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    dir.setTextFill(Color.WHITE);
+                    dir.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    dir.setTextFill(Color.BLACK);
 
                     Label prod = new Label("producer: " + film_answer.getProducer());
-                    prod.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    prod.setTextFill(Color.WHITE);
+                    prod.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    prod.setTextFill(Color.BLACK);
 
                     Label rel = new Label("release date: " + film_answer.getRelease_date());
-                    rel.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    rel.setTextFill(Color.WHITE);
+                    rel.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    rel.setTextFill(Color.BLACK);
 
                     Label score = new Label("rt score: " + film_answer.getRt_score());
-                    score.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    score.setTextFill(Color.WHITE);
+                    score.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    score.setTextFill(Color.BLACK);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, title, desc, dir, prod, rel, score);
                     column.setAlignment(Pos.CENTER);
@@ -110,28 +124,28 @@ public class UI extends Application {
             }
             else q = 2;
 
-            case 2: if (type == "people") {
+            case 2: if (type == "person") {
                 People people = testPeopleApiProvider(id);
                 if (people != null) {
                     Label name = new Label("name: " + people.getName());
-                    name.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    name.setTextFill(Color.WHITE);
+                    name.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    name.setTextFill(Color.BLACK);
 
                     Label gender = new Label("gender: " + people.getGender());
-                    gender.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    gender.setTextFill(Color.WHITE);
+                    gender.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    gender.setTextFill(Color.BLACK);
 
                     Label age = new Label("age: " + people.getAge());
-                    age.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    age.setTextFill(Color.WHITE);
+                    age.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    age.setTextFill(Color.BLACK);
 
                     Label eye_color = new Label("eye_color: " + people.getEye_color());
-                    eye_color.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    eye_color.setTextFill(Color.WHITE);
+                    eye_color.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    eye_color.setTextFill(Color.BLACK);
 
                     Label hair_color = new Label("hair_color: " + people.getHair_color());
-                    hair_color.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    hair_color.setTextFill(Color.WHITE);
+                    hair_color.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    hair_color.setTextFill(Color.BLACK);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, gender, age, eye_color, hair_color);
                     column.setAlignment(Pos.CENTER);
@@ -142,24 +156,24 @@ public class UI extends Application {
             }
             else q = 3;
 
-            case 3: if (type == "locations") {
+            case 3: if (type == "location") {
                 Locations location = testLocationApiProvider(id);
                 if (location != null) {
                     Label name = new Label("name: " + location.getName());
-                    name.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    name.setTextFill(Color.WHITE);
+                    name.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    name.setTextFill(Color.BLACK);
 
                     Label climate = new Label("climate: " + location.getClimate());
-                    climate.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    climate.setTextFill(Color.WHITE);
+                    climate.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    climate.setTextFill(Color.BLACK);
 
                     Label terrain = new Label("terrain: " + location.getTerrain());
-                    terrain.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    terrain.setTextFill(Color.WHITE);
+                    terrain.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    terrain.setTextFill(Color.BLACK);
 
                     Label surf_water = new Label("surface water: " + location.getSurface_water());
-                    surf_water.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    surf_water.setTextFill(Color.WHITE);
+                    surf_water.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    surf_water.setTextFill(Color.BLACK);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, climate, terrain, surf_water);
                     column.setAlignment(Pos.CENTER);
@@ -174,20 +188,20 @@ public class UI extends Application {
                 Species species = testSpeciesApiProvider(id);
                 if (species != null) {
                     Label name = new Label("name: " + species.getName());
-                    name.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-                    name.setTextFill(Color.WHITE);
+                    name.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    name.setTextFill(Color.BLACK);
 
                     Label classification = new Label("classification: " + species.getClassification());
-                    classification.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-                    classification.setTextFill(Color.WHITE);
+                    classification.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    classification.setTextFill(Color.BLACK);
 
                     Label eye_color = new Label("eye color: " + species.getEye_colors());
-                    eye_color.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-                    eye_color.setTextFill(Color.WHITE);
+                    eye_color.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    eye_color.setTextFill(Color.BLACK);
 
                     Label hair_color = new Label("hair color: " + species.getHair_colors());
-                    hair_color.setFont(Font.font("Arial", FontWeight.LIGHT, 14));
-                    hair_color.setTextFill(Color.WHITE);
+                    hair_color.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    hair_color.setTextFill(Color.BLACK);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, classification, eye_color, hair_color);
                     column.setAlignment(Pos.CENTER);
@@ -198,26 +212,26 @@ public class UI extends Application {
             }
             else q = 5;
 
-            case 5: if (type == "vehicles") {
+            case 5: if (type == "vehicle") {
                 Vehicles vehicle = testVehicleApiProvider(id);
                 if (vehicle != null) {
                     Label name = new Label("name: " + vehicle.getName());
-                    name.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    name.setTextFill(Color.WHITE);
+                    name.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    name.setTextFill(Color.BLACK);
 
                     Label desc = new Label("description: " + vehicle.getDescription());
-                    desc.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    desc.setTextFill(Color.WHITE);
+                    desc.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    desc.setTextFill(Color.BLACK);
                     desc.setWrapText(true);
                     desc.setMaxWidth(400);
 
                     Label veh_class = new Label("vehicle class: " + vehicle.getVehicle_class());
-                    veh_class.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    veh_class.setTextFill(Color.WHITE);
+                    veh_class.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    veh_class.setTextFill(Color.BLACK);
 
                     Label length = new Label("length: " + vehicle.getLength());
-                    length.setFont(Font.font("Arial", FontWeight.LIGHT, 13));
-                    length.setTextFill(Color.WHITE);
+                    length.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                    length.setTextFill(Color.BLACK);
 
                     column = new FlowPane(Orientation.VERTICAL, 10, 10, name, desc, veh_class, length);
                     column.setAlignment(Pos.CENTER);
@@ -230,11 +244,11 @@ public class UI extends Application {
             break;
         }
 
-        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/ghibliImage.jpeg", 400, 280, false, true);
+        Image img = new Image("file:C:/Users/madfl/IdeaProjects/GhibliApp/src/main/resources/images/ghibliImage.jpeg");
         BackgroundImage image = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false,true, true));
         column.setBackground(new Background(image));
 
-        Scene scene = new Scene(column, 400, 280);
+        Scene scene = new Scene(column, 500, 400);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Ghibli App");
@@ -298,7 +312,7 @@ public class UI extends Application {
         type1_btn.setTextFill(Color.BLACK);
         type1_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
-            stage_id = EnterId(stage_id, "films");
+            stage_id = EnterId(stage_id, "film");
         });
 
         Label films = new Label("Films");
@@ -311,7 +325,7 @@ public class UI extends Application {
         type2_btn.setTextFill(Color.BLACK);
         type2_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
-            stage_id = EnterId(stage_id, "people");
+            stage_id = EnterId(stage_id, "person");
         });
 
         Label people = new Label("People");
@@ -324,7 +338,7 @@ public class UI extends Application {
         type3_btn.setTextFill(Color.BLACK);
         type3_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
-            stage_id = EnterId(stage_id, "locations");
+            stage_id = EnterId(stage_id, "location");
         });
 
         Label locations = new Label("Locations");
@@ -350,7 +364,7 @@ public class UI extends Application {
         type5_btn.setTextFill(Color.BLACK);
         type5_btn.setOnAction(e -> {
             Stage stage_id = new Stage();
-            stage_id = EnterId(stage_id, "vehicles");
+            stage_id = EnterId(stage_id, "vehicle");
         });
 
         Label vehicles = new Label("Vehicles");
