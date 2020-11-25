@@ -23,5 +23,3 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = 'foruser.UI'
-

@@ -4,9 +4,12 @@ import sources.providers.*;
 import forserver.md.*;
 import forserver.usecases.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main_test {
+    private ArrayList <Films> AllFilms;
 
     public static void main(String[] args) {
         System.out.println("What information do you prefer to know? " +
@@ -17,74 +20,68 @@ public class Main_test {
                 "\n5.Vehicles\n");
         Scanner scan = new Scanner(System.in);
         int type = scan.nextInt();
-        int q = 0;
+        int q = 1;
         switch (q) {
-            case 0: if (type == 1) {
-                System.out.println("Enter film id: ");
-                new Main_test().testFilmApiProvider();
-            }
-            else q = 1;
-            case 1: if (type == 2) {
-                System.out.println("Enter people id: ");
-                new Main_test().testPeopleProvider();
+            case 1: if (type == 1) {
+                new Main_test().FilmsApiProvider();
             }
             else q = 2;
-            case 2: if (type == 3) {
-                System.out.println("Enter location id: ");
-                new Main_test().testLocationProvider();
+            case 2: if (type == 2) {
+                new Main_test().PeopleApiProvider();
             }
             else q = 3;
-            case 3: if (type == 4) {
-                System.out.println("Enter species id: ");
-                new Main_test().testSpeciesProvider();
+            case 3: if (type == 3) {
+                new Main_test().LocationsApiProvider();
             }
             else q = 4;
-            case 4: if (type == 5) {
-                System.out.println("Enter vehicle id: ");
-                new Main_test().testVehiclesProvider();
+            case 4: if (type == 4) {
+                new Main_test().SpeciesApiProvider();
             }
             else q = 5;
+            case 5: if (type == 5) {
+                new Main_test().VehiclesApiProvider();
+            }
+            else q = 6;
             break;
         }
     }
 
-    private void testFilmApiProvider() {
-        GetFilmIdByUseCase useCase = new GetFilmIdByUseCase(new ApiFilmProvider());
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        Films film = useCase.getFilmsById(id);
-        System.out.println(film != null ? film:"Sorry, I didn't find that film\n");
+    private void FilmsApiProvider() {
+        GetFilm films = new GetFilm(new ApiAllFilmsProvider());
+        List <Films> film = films.GetListOfFilms();
+        int i = 0;
+        for (Films movie:film) {
+            System.out.println(film.get(i));
+            i++;
+        }
+        System.out.println(film.size());
     }
 
-    private void testPeopleProvider(){
-        GetPeopleIdByUseCase useCase = new GetPeopleIdByUseCase(new ApiPeopleProvider());
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        People people = useCase.getPeopleById(id);
-        System.out.println(people != null? people:"Sorry, I didn't find that people\n");
+    private void PeopleApiProvider() {
+        GetPeople people = new GetPeople(new ApiAllPeopleProvider());
+        List <People> person = people.GetListOfPeople();
+        System.out.println(person != null ? person:"didn't find");
+        System.out.println(person.size());
     }
 
-    private void testLocationProvider(){
-        GetLocationIdByUseCase useCase = new GetLocationIdByUseCase(new ApiLocationProvider());
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        Locations location = useCase.getLocationById(id);
-        System.out.println(location != null? location:"Sorry, I didn't find that location\n");
+    private void LocationsApiProvider() {
+        GetLocation loc = new GetLocation(new ApiAllLocationsProvider());
+        List <Locations> locs = loc.GetLIstOfLocations();
+        System.out.println(locs != null ? locs:"didn't find");
+        System.out.println(locs.size());
     }
 
-    private void testSpeciesProvider(){
-        GetSpeciesIdByUseCase useCase = new GetSpeciesIdByUseCase(new ApiSpeciesProvider());
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        Species species = useCase.getSpeciesById(id);
-        System.out.println(species != null? species:"Sorry, I didn't find that species\n");
+    private void SpeciesApiProvider() {
+        GetSpecies species = new GetSpecies(new ApiAllSpeciesProvider());
+        List <Species> speciess = species.GetListOfSpecies();
+        System.out.println(speciess != null ? speciess:"didn't find");
+        System.out.println(speciess.size());
     }
 
-    private void testVehiclesProvider(){
-        GetVehicleIdByUseCase useCase = new GetVehicleIdByUseCase(new ApiVehiclesProvider());
-        Scanner scanner = new Scanner(System.in);
-        String id = scanner.nextLine();
-        Vehicles vehicle = useCase.getVehicleById(id);
-        System.out.println(vehicle != null? vehicle:"Sorry, I didn't find that vehicle\n");
+    private void VehiclesApiProvider() {
+        GetVehicle vehicle = new GetVehicle(new ApiAllVehiclesProvider());
+        List <Vehicles> vehicles = vehicle.GetListOfVehicles();
+        System.out.println(vehicles != null ? vehicles:"didn't find");
+        System.out.println(vehicles.size());
     }
 }
